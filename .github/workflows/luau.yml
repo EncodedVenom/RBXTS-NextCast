@@ -38,21 +38,21 @@ jobs:
                   cd ..
 
                   echo "Cloning Net (branch: Luau)"
-                  git clone --depth=50 --branch=luau https://encodedvenom:${{secrets.GITHUB_TOKEN}}@github.com/EncodedVenom/RBXTS-NextCast.git luau
+                  git clone --depth=50 --branch=luau https://encodedvenom:${{secrets.GITHUB_TOKEN}}@github.com/EncodedVenom/rbx-nextcast.git luau
 
                   echo "Remove existing files"
                   rm -rf luau/*
                   mkdir -p luau/dist
-                  cp -r RBXTS-NextCast/out/* luau/dist
+                  cp -r rbx-nextcast/out/* luau/dist
 
                   echo "Generating vendors from include"
                   mkdir -p luau/dist/TS
-                  cp -r RBXTS-NextCast/include/* luau/dist/TS
+                  cp -r rbx-nextcast/include/* luau/dist/TS
 
                   echo "Removing declaration files"
                   find luau -name '*.d.ts' -delete
 
-                  cp RBXTS-NextCast/luau/dist/* luau
+                  cp rbx-nextcast/luau/dist/* luau
 
                   cd luau
 
@@ -72,5 +72,5 @@ jobs:
                     fi
                     
                     echo "Pushing changes..."
-                    git push https://encodedvenom:${{secrets.GITHUB_TOKEN}}@github.com/EncodedVenom/RBXTS-NextCast.git HEAD:luau
+                    git push https://encodedvenom:${{secrets.GITHUB_TOKEN}}@github.com/EncodedVenom/rbx-nextcast.git HEAD:luau
                   fi

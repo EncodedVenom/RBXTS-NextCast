@@ -34,10 +34,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/EncodedVenom/RBXTS-NextCast.git"
+		"url": "git+https://github.com/EncodedVenom/rbx-nextcast.git"
 	},
 	"bugs": {
-		"url": "https://github.com/EncodedVenom/RBXTS-NextCast/issues"
+		"url": "https://github.com/EncodedVenom/rbx-nextcast/issues"
 	},
-	"homepage": "https://github.com/EncodedVenom/RBXTS-NextCast#readme"
+	"homepage": "https://github.com/EncodedVenom/rbx-nextcast#readme"
 }
