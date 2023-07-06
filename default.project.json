@@ -1,0 +1,6 @@
+{
+    "name": "nextcast",
+    "tree": {
+        "$path": "dist"
+    }
+}
