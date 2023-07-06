@@ -1,6 +1,6 @@
 /* eslint-disable roblox-ts/no-private-identifier */
 import { RunService, Workspace } from "@rbxts/services";
-import type { CastBehavior, NextCast } from "."; // Do not import directly to avoid cyclic references.
+import type { CastBehavior, Caster } from "."; // Do not import directly to avoid cyclic references.
 import {
 	ERR_CAN_PIERCE_PERFORMANCE,
 	ERR_HIGH_FIDELITY_SEGMENT_PERFORMANCE,
@@ -8,7 +8,7 @@ import {
 	ERR_OBJECT_DISPOSED,
 	WARN_INCREASE_SEGMENT_SIZE,
 } from "../errorMessages";
-import { PartCache } from "../partCache";
+import { PartCache } from "../PartCache";
 
 interface CastTrajectory {
 	StartTime: number;
@@ -62,7 +62,7 @@ const GetVisualizationObjects = () => {
 	return visualizationObjects;
 };
 
-let NextCastRef: typeof NextCast;
+let NextCastRef: typeof Caster;
 
 const PrintDebug = (message: string) => {
 	if (NextCastRef.DebugLogging) print(message);
@@ -482,12 +482,12 @@ export class ActiveCast<T extends {}> {
 	 */
 	public RayInfo: RayInfo<T>;
 
-	static SetRef = (reference: typeof NextCast) => {
+	static SetRef = (reference: typeof Caster) => {
 		NextCastRef = reference;
 	};
 
 	constructor(
-		public Caster: NextCast<T>,
+		public Caster: Caster<T>,
 		origin: Vector3,
 		direction: Vector3,
 		velocity: Vector3 | number,

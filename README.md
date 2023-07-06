@@ -21,7 +21,7 @@ This module will remain 1:1 backwards compatible with any FastCast API calls tha
 Below is an example of a typical gun used in the orignal module's example in typescript.
 
 ```ts
-import { NextCast, PartCache, HighFidelityBehavior, ActiveCast } from "@rbxts/nextcast";
+import { Caster, PartCache, HighFidelityBehavior, ActiveCast } from "@rbxts/nextcast";
 
 // UserData is now typed. cast.UserData will be typed as Partial<UserData> since the table is still empty on creation.
 interface UserData {
@@ -45,7 +45,7 @@ CosmeticBullet.Size = new Vector3(0.2, 0.2, 2.4);
 
 const PartProvider = new PartCache(CosmeticBullet, 100, game.GetService("Workspace")); // In real games this would be a Projectiles folder in workspace or similar, but this is fine for an example.
 
-const Caster = new NextCast<UserData>();
+const NextCastCaster = new Caster<UserData>();
 
 const CastParams = new RaycastParams();
 CastParams.IgnoreWater = true;
@@ -97,7 +97,7 @@ const Fire = (direction: Vector3) => {
 
 	CastBehavior.CanPierceFunction = CanRayPierce;
 
-	const simBullet = Caster.Fire(
+	const simBullet = NextCastCaster.Fire(
 		Tool.Handle.FirePointObject.WorldPosition,
 		direction,
 		modifiedBulletSpeed,
@@ -115,13 +115,13 @@ MouseEvent.OnServerEvent.Connect((client, mousePoint) => {
 A more recent example using some of the changes includes:
 
 ```ts
-import { NextCast, HighFidelityBehavior } from "@rbxts/nextcast";
+import { Caster, HighFidelityBehavior } from "@rbxts/nextcast";
 
 interface UserData {
 	UUID: number;
 }
 
-const caster = NextCast.createSimple<UserData>({
+const caster = Caster.createSimple<UserData>({
 	RaycastParams: new RaycastParams(),
 	Acceleration: new Vector3(),
 	MaxDistance: 10000,

@@ -2,7 +2,7 @@
 import { Signal } from "@rbxts/beacon";
 import { Workspace } from "@rbxts/services";
 import { ActiveCast } from "./activeCast";
-import { PartCache } from "../partCache";
+import { PartCache } from "../PartCache";
 
 export enum HighFidelityBehavior {
 	/** NextCast will behave as it normally does, and use a segment length based on delta time. */
@@ -55,7 +55,7 @@ const DEFAULT_BEHAVIOR = identity<CastBehavior<{}>>({
 	SphereSize: 0,
 });
 
-export class NextCast<T extends {}> {
+export class Caster<T extends {}> {
 	/** Makes NextCast print verbose logs if enabled. */
 	static DebugLogging = false;
 	/** Makes NextCast show a representation of the casts if enabled */
@@ -71,9 +71,9 @@ export class NextCast<T extends {}> {
 	private static _sentStaticReference = false;
 
 	constructor() {
-		if (!NextCast._sentStaticReference) {
-			ActiveCast.SetRef(NextCast);
-			NextCast._sentStaticReference = true;
+		if (!Caster._sentStaticReference) {
+			ActiveCast.SetRef(Caster);
+			Caster._sentStaticReference = true;
 		}
 	}
 
@@ -85,7 +85,7 @@ export class NextCast<T extends {}> {
 	 */
 	public static createSimple<T extends {} = {}>(castBehavior: CastBehavior<T>, raycastParams?: RaycastParams) {
 		castBehavior.RaycastParams = raycastParams;
-		const caster = new NextCast<T>();
+		const caster = new Caster<T>();
 		caster.defaultBehavior = castBehavior;
 		return caster;
 	}
