@@ -1,8 +1,8 @@
 -- Entry-point for luau nextcast.
 
 local TS = require(script.TS.RuntimeLib)
-local Caster = TS.import(script, script, "Caster").Caster
-local PartCache = TS.import(script, script, "PartCache").PartCache
+local Caster = TS.import(script, script, "caster").Caster
+local PartCache = TS.import(script, script, "partCache").PartCache
 
 local NextCast = {
     Caster = Caster,
