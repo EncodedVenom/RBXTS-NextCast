@@ -1,11 +1,12 @@
 /* eslint-disable roblox-ts/no-private-identifier */
-import { Workspace } from "@rbxts/services";
 import {
 	ERR_CACHE_PARENT_INVALID,
 	ERR_NOT_INSTANCE,
 	ERR_POSSIBLE_WRONG_PART,
 	WARN_NO_PARTS_AVAILABLE,
 } from "./errorMessages";
+
+const Workspace = game.GetService("Workspace");
 
 const CF_REALLY_FAR_AWAY = new CFrame(0, 10e8, 0);
 

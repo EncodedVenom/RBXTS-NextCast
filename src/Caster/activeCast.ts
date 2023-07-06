@@ -1,5 +1,4 @@
 /* eslint-disable roblox-ts/no-private-identifier */
-import { RunService, Workspace } from "@rbxts/services";
 import type { CastBehavior, Caster } from "."; // Do not import directly to avoid cyclic references.
 import {
 	ERR_CAN_PIERCE_PERFORMANCE,
@@ -9,6 +8,9 @@ import {
 	WARN_INCREASE_SEGMENT_SIZE,
 } from "../errorMessages";
 import { PartCache } from "../PartCache";
+
+const RunService = game.GetService("RunService");
+const Workspace = game.GetService("Workspace");
 
 interface CastTrajectory {
 	StartTime: number;

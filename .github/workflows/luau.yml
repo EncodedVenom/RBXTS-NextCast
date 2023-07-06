@@ -38,7 +38,7 @@ jobs:
                   cd ..
 
                   echo "Cloning Net (branch: Luau)"
-                  git clone --depth=50 --branch=luau https://encodedvenom:${{secrets.git_token}}@github.com/EncodedVenom/RBXTS-NextCast.git luau
+                  git clone --depth=50 --branch=luau https://encodedvenom:${{secrets.GITHUB_TOKEN}}@github.com/EncodedVenom/RBXTS-NextCast.git luau
 
                   echo "Remove existing files"
                   rm -rf luau/*
@@ -56,6 +56,11 @@ jobs:
 
                   cd luau
 
+                  echo "Overriding init.lua..."
+                  rm dist/init.lua
+                  cp init.lua dist/init.lua
+                  rm init.lua
+
                   echo "Commiting to Git..."
                   git add -A
                   if ! git diff-index --quiet HEAD --; then
@@ -67,5 +72,5 @@ jobs:
                     fi
                     
                     echo "Pushing changes..."
-                    git push https://encodedvenom:${{secrets.git_token}}@github.com/EncodedVenom/RBXTS-NextCast.git HEAD:luau
+                    git push https://encodedvenom:${{secrets.GITHUB_TOKEN}}@github.com/EncodedVenom/RBXTS-NextCast.git HEAD:luau
                   fi
