@@ -56,6 +56,11 @@ jobs:
 
                   cd luau
 
+                  echo "Overriding init.lua..."
+                  rm dist/init.lua
+                  cp init.lua dist/init.lua
+                  rm init.lua
+
                   echo "Commiting to Git..."
                   git add -A
                   if ! git diff-index --quiet HEAD --; then
