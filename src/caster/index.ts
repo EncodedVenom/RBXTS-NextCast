@@ -1,6 +1,6 @@
 /* eslint-disable roblox-ts/no-private-identifier */
 import { ActiveCast } from "./activeCast";
-import { PartCache } from "../PartCache";
+import { PartCache } from "../_PartCache";
 import { Signal } from "../signal";
 
 const Workspace = game.GetService("Workspace");

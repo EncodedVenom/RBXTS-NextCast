@@ -1,3 +1,3 @@
-export * from "./Caster";
-export * from "./PartCache";
-export * from "./Caster/activeCast";
+export * from "./caster";
+export * from "./partCache";
+export * from "./caster/activeCast";
