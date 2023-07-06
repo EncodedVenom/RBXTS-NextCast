@@ -1,0 +1,71 @@
+name: Build Luau
+on:
+    workflow_dispatch:
+    release:
+        types: [published]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@master
+            - name: Install NodeJS
+              uses: actions/setup-node@master
+              with:
+                  node-version: 14.x
+                  registry-url: "https://registry.npmjs.org"
+            - name: Install node_modules
+              run: |
+                  npm install -g roblox-ts@latest
+                  npm install
+
+            - name: Configure Git
+              run: |
+                  git config --global user.name "GitHub Actions"
+                  git config --global user.email "noreply@github.com"
+
+            - name: Generate Luau Bundle
+              run: |
+                  npm run build:luau
+
+            - name: Copy files to LuaLib branch
+              run: |
+                  PACKAGE_VERSION=$(cat package.json | jq -r '.version')
+                  echo "RbxNet Version: $PACKAGE_VERSION"
+
+                  echo "Changing to parent directory"
+                  cd ..
+
+                  echo "Cloning Net (branch: Luau)"
+                  git clone --depth=50 --branch=luau https://encodedvenom:${{secrets.git_token}}@github.com/EncodedVenom/RBXTS-NextCast.git luau
+
+                  echo "Remove existing files"
+                  rm -rf luau/*
+                  mkdir -p luau/dist
+                  cp -r RBXTS-NextCast/out/* luau/dist
+
+                  echo "Generating vendors from include"
+                  mkdir -p luau/dist/TS
+                  cp -r RBXTS-NextCast/include/* luau/dist/TS
+
+                  echo "Removing declaration files"
+                  find luau -name '*.d.ts' -delete
+
+                  cp RBXTS-NextCast/luau/dist/* luau
+
+                  cd luau
+
+                  echo "Commiting to Git..."
+                  git add -A
+                  if ! git diff-index --quiet HEAD --; then
+                    echo "Lua Build changed!"
+                    if [ "$GITHUB_EVENT_NAME" == "push" ]; then
+                      git commit -m "Updated manually (v$PACKAGE_VERSION)"
+                    else
+                      git commit -m "Updated via $GITHUB_EVENT_NAME"
+                    fi
+                    
+                    echo "Pushing changes..."
+                    git push https://encodedvenom:${{secrets.git_token}}@github.com/EncodedVenom/RBXTS-NextCast.git HEAD:luau
+                  fi
