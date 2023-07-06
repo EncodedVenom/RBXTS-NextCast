@@ -79,20 +79,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@rbxts/beacon@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@rbxts/beacon/-/beacon-2.1.1.tgz#a9b02466ff02fbc2bc64e1e2cca52b2e85605a63"
-  integrity sha512-QeFMSGj+Iijp+tHcV9eyqVyeKZ/9zp7GqRJ/hecKiHmoTu4yFcyGnUQAaX7OdQKBCgLvWMJ9wK/FXMECjFA2Kg==
-
 "@rbxts/compiler-types@^2.1.0-types.1":
   version "2.1.0-types.1"
   resolved "https://registry.yarnpkg.com/@rbxts/compiler-types/-/compiler-types-2.1.0-types.1.tgz#60eb32109fc2299826fd5d1e8f4e7cfc08d9a5ae"
   integrity sha512-+ztwutzuNivWsgsERiC7n5il4C5gfJUuGJUmXYRq8FwY4ye3aupRi9RocmyAHq6255sO7z+RM61AVbqx3llsLQ==
-
-"@rbxts/services@^1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@rbxts/services/-/services-1.5.1.tgz#4536a87932f28797507ed591f0061277c52ea77f"
-  integrity sha512-SRtfIjga0K4YYSXRpK+eH3kcTq7ZXo9OHOt0jszaOOoEOIJloMGlyuRPqesPHyhveh2AMXAZr3TYbRMSD+u+kQ==
 
 "@rbxts/types@^1.0.703":
   version "1.0.703"
@@ -297,7 +287,14 @@ concat-map@0.0.1:
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
-cross-spawn@^7.0.2:
+cross-env@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-7.0.3.tgz#865264b29677dc015ba8418918965dd232fc54cf"
+  integrity sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==
+  dependencies:
+    cross-spawn "^7.0.1"
+
+cross-spawn@^7.0.1, cross-spawn@^7.0.2:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
   integrity sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==
