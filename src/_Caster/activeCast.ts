@@ -7,7 +7,7 @@ import {
 	ERR_OBJECT_DISPOSED,
 	WARN_INCREASE_SEGMENT_SIZE,
 } from "../errorMessages";
-import { PartCache } from "../PartCache";
+import { PartCache } from "../_PartCache";
 
 const RunService = game.GetService("RunService");
 const Workspace = game.GetService("Workspace");
