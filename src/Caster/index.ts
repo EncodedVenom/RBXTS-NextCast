@@ -1,8 +1,9 @@
 /* eslint-disable roblox-ts/no-private-identifier */
 import { Signal } from "@rbxts/beacon";
-import { Workspace } from "@rbxts/services";
 import { ActiveCast } from "./activeCast";
 import { PartCache } from "../PartCache";
+
+const Workspace = game.GetService("Workspace");
 
 export enum HighFidelityBehavior {
 	/** NextCast will behave as it normally does, and use a segment length based on delta time. */
