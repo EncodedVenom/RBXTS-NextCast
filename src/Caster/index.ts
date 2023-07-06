@@ -1,7 +1,7 @@
 /* eslint-disable roblox-ts/no-private-identifier */
-import { Signal } from "@rbxts/beacon";
 import { ActiveCast } from "./activeCast";
 import { PartCache } from "../PartCache";
+import { Signal } from "../signal";
 
 const Workspace = game.GetService("Workspace");
 
