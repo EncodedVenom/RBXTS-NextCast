@@ -39,5 +39,8 @@
 	"bugs": {
 		"url": "https://github.com/EncodedVenom/rbx-nextcast/issues"
 	},
-	"homepage": "https://github.com/EncodedVenom/rbx-nextcast#readme"
+	"homepage": "https://github.com/EncodedVenom/rbx-nextcast#readme",
+	"dependencies": {
+		"@rbxts/net": "^3.0.7"
+	}
 }

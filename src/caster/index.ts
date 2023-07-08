@@ -2,8 +2,13 @@
 import { ActiveCast } from "./activeCast";
 import { PartCache } from "../partCache";
 import { Signal } from "../signal";
+import { CastBehaviorMap, OnClientCast, Remotes } from "./networking/shared";
 
 const Workspace = game.GetService("Workspace");
+const RunService = game.GetService("RunService");
+
+const RNG = new Random();
+const TAU = math.pi * 2;
 
 export enum HighFidelityBehavior {
 	/** NextCast will behave as it normally does, and use a segment length based on delta time. */
@@ -38,6 +43,10 @@ export type CastBehavior<T extends {}> = {
 	// Additions
 	/** When set above 0, uses WorldRoot.Spherecast instead of WorldRoot.Raycast */
 	SphereSize: number;
+
+	SpreadAngles?: { Min: number; Max: number };
+
+	SerializationCode?: string;
 };
 
 const DEFAULT_BEHAVIOR = identity<CastBehavior<{}>>({
@@ -54,6 +63,10 @@ const DEFAULT_BEHAVIOR = identity<CastBehavior<{}>>({
 	CanPierceFunction: undefined,
 
 	SphereSize: 0,
+	SpreadAngles: {
+		Min: 0,
+		Max: 0,
+	},
 });
 
 export class Caster<T extends {}> {
@@ -61,6 +74,8 @@ export class Caster<T extends {}> {
 	static DebugLogging = false;
 	/** Makes NextCast show a representation of the casts if enabled */
 	static VisualizeCasts = false;
+	/** Makes NextCast handle all replication. */
+	static AutoReplicate = false;
 	/**
 	 * Kept for compatibility. Use the exported enum when possible.
 	 * @hidden */
@@ -91,12 +106,26 @@ export class Caster<T extends {}> {
 		return caster;
 	}
 
+	public static registerSerializedCastData(input: CastBehavior<{}>) {
+		if (input.SerializationCode === undefined) throw "You can't serialize cast data without a Serialization Code!";
+		CastBehaviorMap.set(input.SerializationCode, input);
+	}
+
 	/**
 	 * Clones the default behavior and returns it.
 	 * @returns CastBehavior<T>
 	 */
 	public static newBehavior<U extends {}>() {
 		return table.clone(DEFAULT_BEHAVIOR) as CastBehavior<U>;
+	}
+
+	/**
+	 * @client
+	 * Connects to any client replication.
+	 * @param handler
+	 */
+	public static onClientCast(handler: (cast: ActiveCast<{}>) => void) {
+		OnClientCast.Connect(handler);
 	}
 
 	/**
@@ -144,6 +173,27 @@ export class Caster<T extends {}> {
 		velocity: Vector3 | number,
 		castDataPacket = this.defaultBehavior,
 	): ActiveCast<T> {
+		if (castDataPacket.SpreadAngles && RunService.IsServer()) {
+			direction = new CFrame(new Vector3(), direction)
+				.mul(CFrame.fromOrientation(0, 0, RNG.NextNumber(0, TAU)))
+				.mul(
+					CFrame.fromOrientation(
+						math.rad(RNG.NextNumber(castDataPacket.SpreadAngles.Min, castDataPacket.SpreadAngles.Max)),
+						0,
+						0,
+					),
+				).LookVector;
+		}
+		if (Caster.AutoReplicate) {
+			if (castDataPacket.SerializationCode === undefined)
+				throw "Attempted to use AutoReplicate without SerializationCode!";
+			Remotes.Server.Get("Replicate").SendToAllPlayers(
+				origin,
+				direction,
+				velocity,
+				castDataPacket.SerializationCode,
+			);
+		}
 		const cast = new ActiveCast<T>(this, origin, direction, velocity, castDataPacket);
 		return cast;
 	}

@@ -84,6 +84,11 @@
   resolved "https://registry.yarnpkg.com/@rbxts/compiler-types/-/compiler-types-2.1.0-types.1.tgz#60eb32109fc2299826fd5d1e8f4e7cfc08d9a5ae"
   integrity sha512-+ztwutzuNivWsgsERiC7n5il4C5gfJUuGJUmXYRq8FwY4ye3aupRi9RocmyAHq6255sO7z+RM61AVbqx3llsLQ==
 
+"@rbxts/net@^3.0.7":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@rbxts/net/-/net-3.0.7.tgz#bbb5a7d61f622641ba2083ff9a9f1496370e6fbc"
+  integrity sha512-IJ1XQFkNF81xCP2YxWtDJbORyiWBnNEneQ26DbHFpx4cIXYPdOgCO3VVCQDNjeEp1rjbkK6YtHoqiXxwEVacZQ==
+
 "@rbxts/types@^1.0.703":
   version "1.0.703"
   resolved "https://registry.yarnpkg.com/@rbxts/types/-/types-1.0.703.tgz#cabb350f1eaa4daf109b5184456c6772ae011343"
