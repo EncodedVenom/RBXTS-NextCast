@@ -79,20 +79,20 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@rbxts/compiler-types@^2.1.0-types.1":
-  version "2.1.0-types.1"
-  resolved "https://registry.yarnpkg.com/@rbxts/compiler-types/-/compiler-types-2.1.0-types.1.tgz#60eb32109fc2299826fd5d1e8f4e7cfc08d9a5ae"
-  integrity sha512-+ztwutzuNivWsgsERiC7n5il4C5gfJUuGJUmXYRq8FwY4ye3aupRi9RocmyAHq6255sO7z+RM61AVbqx3llsLQ==
+"@rbxts/compiler-types@^2.1.1-types.0":
+  version "2.1.1-types.0"
+  resolved "https://registry.yarnpkg.com/@rbxts/compiler-types/-/compiler-types-2.1.1-types.0.tgz#a1f02b57402dffec474dd6656ec1d8a897b9756b"
+  integrity sha512-wBRma9MgPbOxvCaQEUvraHLHAmLFGW9R6fT65+MBu3uCYM6vUNWj8l4dHRxgkUK8lnGYdGWxsr/sZFk8sdvwog==
 
 "@rbxts/net@^3.0.7":
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/@rbxts/net/-/net-3.0.7.tgz#bbb5a7d61f622641ba2083ff9a9f1496370e6fbc"
   integrity sha512-IJ1XQFkNF81xCP2YxWtDJbORyiWBnNEneQ26DbHFpx4cIXYPdOgCO3VVCQDNjeEp1rjbkK6YtHoqiXxwEVacZQ==
 
-"@rbxts/types@^1.0.703":
-  version "1.0.703"
-  resolved "https://registry.yarnpkg.com/@rbxts/types/-/types-1.0.703.tgz#cabb350f1eaa4daf109b5184456c6772ae011343"
-  integrity sha512-Z7P2ma96gIHjib+nBPl+VZj9m5J/lVXk+VEwIHYrwgUy2P8qZGaEJjBM1XcU8xY6LHCVAq82v14Ke9ZCY9499g==
+"@rbxts/types@^1.0.704":
+  version "1.0.704"
+  resolved "https://registry.yarnpkg.com/@rbxts/types/-/types-1.0.704.tgz#3ba89869cfedca8b3b43e86acfc948bd2b66940a"
+  integrity sha512-gjxlE5GmX/4iuflQ8dh0y8WODw4xzu8rlOGJZpYWQvH6XUS143Dg928XYsJ2GqDJ+v0rM6t02TlcMQgdzTRP5A==
 
 "@types/json-schema@^7.0.9":
   version "7.0.12"

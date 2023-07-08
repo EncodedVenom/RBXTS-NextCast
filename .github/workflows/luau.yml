@@ -18,7 +18,8 @@ jobs:
             - name: Install node_modules
               run: |
                   npm install -g roblox-ts@latest
-                  npm install
+                  npm install -g yarn
+                  yarn
 
             - name: Configure Git
               run: |
